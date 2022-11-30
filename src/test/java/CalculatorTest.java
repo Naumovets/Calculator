@@ -5,27 +5,48 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
-    private Calculator calc;
+    private static Calculator calc;
 
     @BeforeAll
-    public void setUp(){
+    public static void setUp(){
         calc = new Calculator();
     }
 
     @Test
-    public void add() {
+    public void add10to5thenResult15() {
         double expected = 15;
         double result =  calc.add(10,5);
         assertEquals(expected,result,0.001);
+    }
+    @Test
+    public void add21to22thenResult43() {
         double expected2 = 43;
         double result2 =  calc.add(21,22);
         assertEquals(expected2,result2,0.001);
+    }
+    @Test
+    public void add333to444thenResult777(){
         double expected3 = 777;
         double result3 =  calc.add(333,444);
         assertEquals(expected3,result3,0.001);
+    }
+    @Test
+    public void add12to143asStringThenResult155(){
         double expected4 = 155;
-        double result4 =  calc.add(12,143);
+        double result4 =  calc.add("12","143");
         assertEquals(expected4,result4,0.001);
+    }
+
+    @Test
+    public void addIncorrectValueThenThrowException(){
+        boolean wasException = false;
+        try{
+            calc.add("adasa","dadadada");
+        }
+        catch (Exception e){
+            wasException = true;
+        }
+        assertTrue(wasException);
     }
 
     @Test
@@ -76,8 +97,10 @@ class CalculatorTest {
         double result4 = calc.devide(159.33,3);
         assertEquals(expected4,result4,0.001);
     }
+
     @AfterAll
-    public void close(){
+    public static void close(){
         calc = null;
     }
+
 }
