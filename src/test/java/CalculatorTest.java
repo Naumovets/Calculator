@@ -1,11 +1,19 @@
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
-    Calculator calc = new Calculator();
+    private Calculator calc;
+
+    @BeforeAll
+    public void setUp(){
+        calc = new Calculator();
+    }
+
     @Test
-    void add() {
+    public void add() {
         double expected = 15;
         double result =  calc.add(10,5);
         assertEquals(expected,result,0.001);
@@ -21,7 +29,7 @@ class CalculatorTest {
     }
 
     @Test
-    void multiplication() {
+    public void multiplication() {
         double expected = 10;
         double result = calc.multiplication(2,5);
         assertEquals(expected,result,0.001);
@@ -38,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void subtract() {
+    public void subtract() {
         double expected = 17;
         double result = calc.subtract(10,-7);
         assertEquals(expected,result,0.001);
@@ -54,7 +62,7 @@ class CalculatorTest {
     }
 
     @Test
-    void devide() {
+    public void devide() {
         double expected = 5.5;
         double result = calc.devide(11,2);
         assertEquals(expected,result,0.001);
@@ -67,5 +75,9 @@ class CalculatorTest {
         double expected4 = 53.11;
         double result4 = calc.devide(159.33,3);
         assertEquals(expected4,result4,0.001);
+    }
+    @AfterAll
+    public void close(){
+        calc = null;
     }
 }
